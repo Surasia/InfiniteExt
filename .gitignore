@@ -1,0 +1,14 @@
+.vs/*
+.vscode/*
+/.vs
+/.vscode
+InfExt/src/x64
+InfExt/src/x64/*
+InfExt/src/build
+x64/
+/.stfolder
+/.trunk
+InfExt/build
+InfExt/.vscode
+vcpkg_installed
+build

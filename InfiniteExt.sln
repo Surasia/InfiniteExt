@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InfExt", "InfExt\InfExt.vcxproj", "{7F811FF4-9143-4A89-A361-F949EA662808}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F811FF4-9143-4A89-A361-F949EA662808}.Debug|x64.ActiveCfg = Release|x64
+		{7F811FF4-9143-4A89-A361-F949EA662808}.Debug|x64.Build.0 = Release|x64
+		{7F811FF4-9143-4A89-A361-F949EA662808}.Debug|x86.ActiveCfg = Release|x64
+		{7F811FF4-9143-4A89-A361-F949EA662808}.Debug|x86.Build.0 = Release|x64
+		{7F811FF4-9143-4A89-A361-F949EA662808}.Release|x64.ActiveCfg = Release|x64
+		{7F811FF4-9143-4A89-A361-F949EA662808}.Release|x64.Build.0 = Release|x64
+		{7F811FF4-9143-4A89-A361-F949EA662808}.Release|x86.ActiveCfg = Release|x64
+		{7F811FF4-9143-4A89-A361-F949EA662808}.Release|x86.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C1CA390-4F41-4A84-8695-FEDF931C410F}
+	EndGlobalSection
+EndGlobal

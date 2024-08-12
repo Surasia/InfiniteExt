@@ -79,11 +79,11 @@
     <ClInclude Include="src\Client.hpp" />
     <ClInclude Include="src\Exports.hpp" />
     <ClInclude Include="src\HavokScript\HavokScript.hpp" />
+    <ClInclude Include="src\HavokScript\HksCompilerSettings.hpp" />
     <ClInclude Include="src\ImGuiHook\stdafx.h" />
     <ClInclude Include="src\Lua\LuaHook.hpp" />
     <ClInclude Include="src\Memory.hpp" />
     <ClInclude Include="src\Misc\ChromaSDK.hpp" />
-    <ClInclude Include="src\Variant\Variant.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Client.cpp" />
@@ -91,7 +91,6 @@
     <ClCompile Include="src\Lua\LuaHook.cpp" />
     <ClCompile Include="src\Memory.cpp" />
     <ClCompile Include="src\Misc\ChromaSDK.cpp" />
-    <ClCompile Include="src\Variant\Variant.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

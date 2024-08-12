@@ -1,17 +1,19 @@
 #ifndef LUAHOOK_HPP
 #define LUAHOOK_HPP
-#include <sol/sol.hpp>
+#include <iostream>
 #include <string>
 
 struct LuaVM {
 public:
-    static void HookVariantFunctions();
-    static void InitializeLua();
-    static void CleanLua();
-    static void ProcessCommand();
-
-private:
-    static sol::state lua;
+	/* Operators */
+	LuaVM() = default;
+    LuaVM(const LuaVM &) = default;
+    LuaVM(LuaVM &&) = delete;
+    LuaVM &operator=(const LuaVM &) = default;
+    LuaVM &operator=(LuaVM &&) = delete;
+    ~LuaVM() = default;
+    /* Public Functions */
+	static void ProcessCommand();
 };
 
 #endif

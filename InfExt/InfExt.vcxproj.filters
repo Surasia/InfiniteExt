@@ -26,13 +26,13 @@
     <ClInclude Include="src\Misc\ChromaSDK.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Variant\Variant.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\ImGuiHook\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Lua\LuaHook.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HavokScript\HksCompilerSettings.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,9 +47,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Misc\ChromaSDK.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Variant\Variant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Lua\LuaHook.cpp">

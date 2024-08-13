@@ -1,13 +1,14 @@
 # InfiniteExt
 **InfiniteExt** is a customizable DLL Hook for Halo Infinite for interacting with the built-in HavokScript VM. This project is built on top of [Blamify's Gatekeeper](https://github.com/Blamify/Gatekeeper), with functionality updated for the latest build of Halo Infinite.
 
-## Features
+## Features/To-Do
 - [x] Hooking HavokScript
 - [x] Hooks to Game Functions
 - [x] Lua File Loading
 - [ ] Tag Viewing
 - [ ] Built-in Memory Editor
-- [ ] ImGui Integration
+- [x] ImGui Integration
+- [x] Forge Hidden Category Enabler
 - [ ] Game Engine Hooks
 
 > [!TIP]
@@ -31,8 +32,15 @@ This project can be built using Visual Studio 2022 (vc143) with `vcpkg` installe
 > The current project is not cross-platform compatible due to a multitude of Microsoft-specific extensions of C++ being used. Usage on Linux using Wine has not been tested.
 
 ## Usage
-InfiniteExt's command line is directly integrated into the built-in HavokScript VM of Halo Infinite. Here, you can run regular lua functions in addition to the custom C bindings which you can find a list for [here.](https://surasia.github.io/assets/env_alphabetical.json)
+InfiniteExt's ImGui interface contains a command line that is directly integrated into the built-in HavokScript VM of Halo Infinite. Here, you can run regular lua functions in addition to the custom C bindings which you can find a list for [here.](https://surasia.github.io/assets/env_alphabetical.json). A button to disable/enable the hidden category in Forge is also included.
+
+### Keybindings:
+- Home: Reload Graphics Hook
+- Insert: Show/Hide UI
+- End: Hook/Unhook ImGui/DX12
 
 
-## Licenses
+## Licenses/Dependencies
 - [Minhook:](licenses/MinhookLicense.txt) The Minimalistic x86/x64 API Hooking Library for Windows.
+- [Dear Imgui:](licenses/ImGuiLicense.txt) Bloat-free Graphical User interface for C++ with minimal dependencies.
+- [UniversalHookX (modified):](licenses/UniversalHookXLicense.txt): Universal graphical hook for Windows apps.

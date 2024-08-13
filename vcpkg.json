@@ -1,5 +1,10 @@
 {
   "dependencies": [
-    "minhook"
+    "minhook",
+    {
+      "name": "imgui",
+      "default-features": false,
+      "features": ["dx12-binding", "win32-binding", "docking-experimental"]
+    }
   ]
 }

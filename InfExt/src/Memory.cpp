@@ -1,4 +1,5 @@
 #include "Memory.hpp"
+#include "Logger/Logger.hpp"
 
 UINT64 Memory::CheckCodeAccess(UINT64 startaddress)
 {
@@ -16,24 +17,22 @@ UINT64 Memory::CheckCodeAccess(UINT64 startaddress)
 
 DWORD Memory::HookFunction(LPVOID pTarget, LPVOID pDetour, LPVOID pTrampoline)
 {
-
+	Logger& logger = Logger::GetInstance(false);
 	if (!isMHInit) {
 		if (MH_Initialize() != MH_OK) {
-			std::cout << "Error: MHInit failed." << "\n";
+			logger.Log(Logger::CRITICAL, "MHInit failed!");
 			return 1;
 		}
-
+		logger.Log(Logger::INFO, "Hooks Initialized!");
 		isMHInit = true;
 	}
-
-	uint32_t hook = MH_CreateHook(pTarget, pDetour, static_cast<LPVOID*>(pTrampoline));
-	if (hook != MH_OK) {
-		printf("Error: MHCreateHook failed with code: %d \n", hook);
+	if (MH_CreateHook(pTarget, pDetour, static_cast<LPVOID*>(pTrampoline)) != MH_OK) {
+		logger.Log(Logger::CRITICAL, "MH_CreateHook failed!");
 		return 1;
 	}
 
 	if (MH_EnableHook(pTarget) != MH_OK) {
-		std::cout << "Error: MHEnableHook failed." << "\n";
+		logger.Log(Logger::CRITICAL, "MH_EnableHook failed!");
 		return 1;
 	}
 
@@ -44,6 +43,7 @@ DWORD Memory::OnAccessHookFunction(PVOID pTarget, LPVOID pDetour, LPVOID pTrampo
 {
 	bool isWaiting = true;
 	uintptr_t accessPointer = 0;
+	Logger& logger = Logger::GetInstance(false);
 
 	while (isWaiting) {
 		accessPointer = Memory::CheckCodeAccess(reinterpret_cast<uintptr_t>(pTarget));
@@ -52,7 +52,7 @@ DWORD Memory::OnAccessHookFunction(PVOID pTarget, LPVOID pDetour, LPVOID pTrampo
 			Memory::HookFunction(pTarget, pDetour, pTrampoline);
 		}
 		else {
-			std::cout << "Error: Failed to hook code." << "\n";
+			logger.Log(Logger::CRITICAL, "Failed to hook code!");
 		}
 
 		isWaiting = false;

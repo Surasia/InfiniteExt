@@ -1,10 +1,7 @@
 #ifndef MEMORY_HPP
 #define MEMORY_HPP
 #include <windows.h>
-#include <iostream>
 #include <Minhook.h>
-
-
 
 class Memory
 {
@@ -22,9 +19,8 @@ public:
 	static void WriteBytes(uintptr_t pAddress, BYTE* pBytes, UINT szSize);
 
 private:
-	/* Private Declarations */
+	/* Private Variables */
 	static inline bool isMHInit = false;
-	static DWORD dwOldProt;
 	/* Private Functions */
 	static UINT64 CheckCodeAccess(UINT64 startaddress);
 };

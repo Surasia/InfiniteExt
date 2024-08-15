@@ -1,11 +1,11 @@
 # InfiniteExt
-**InfiniteExt** is a customizable DLL Hook for Halo Infinite for interacting with the built-in HavokScript VM. This project is built on top of [Blamify's Gatekeeper](https://github.com/Blamify/Gatekeeper), with functionality updated for the latest build of Halo Infinite.
+**InfiniteExt** is a customizable DLL Hook for Halo Infinite for interacting with the built-in HavokScript VM and tag system. This project is built on top of [Blamify's Gatekeeper](https://github.com/Blamify/Gatekeeper), with functionality updated for the latest build of Halo Infinite.
 
 ## Features/To-Do
 - [x] Hooking HavokScript
 - [x] Hooks to Game Functions
 - [x] Lua File Loading
-- [ ] Tag Viewing
+- [x] Tag Editing/Viewing
 - [ ] Built-in Memory Editor
 - [x] ImGui Integration
 - [x] Forge Hidden Category Enabler
@@ -32,7 +32,18 @@ This project can be built using Visual Studio 2022 (vc143) with `vcpkg` installe
 > The current project is not cross-platform compatible due to a multitude of Microsoft-specific extensions of C++ being used. Usage on Linux using Wine has not been tested.
 
 ## Usage
-InfiniteExt's ImGui interface contains a command line that is directly integrated into the built-in HavokScript VM of Halo Infinite. Here, you can run regular lua functions in addition to the custom C bindings which you can find a list for [here.](https://surasia.github.io/assets/env_alphabetical.json). A button to disable/enable the hidden category in Forge is also included.
+### Console
+InfiniteExt's ImGui interface contains a command line that is directly integrated into the built-in HavokScript VM of Halo Infinite. Here, you can run regular lua functions in addition to the custom C bindings which you can find a list for [here.](https://surasia.github.io/assets/env_alphabetical.json)
+
+### Debug Menu
+The debug menu contains multiple toggles for:
+- Enabling the Forge hidden category
+- Enabling the debug watermark
+- Disabling HUD
+- Disabling kill volumes
+
+### Tag Editor
+InfiniteExt provides a tag window that allows you to load and view tags. Simply press the "Load Tags" button and the list will populate with tags sorted by their class. Currently, except for CMSW (CoatingSwatch) files, the list view only provides metadata for tags. For CMSW files however, you can click the "Edit Tag" button, which will open up a seperate window that will allow you to edit every property of the tag.
 
 ### Keybindings:
 - Home: Reload Graphics Hook
@@ -44,3 +55,4 @@ InfiniteExt's ImGui interface contains a command line that is directly integrate
 - [Minhook:](licenses/MinhookLicense.txt) The Minimalistic x86/x64 API Hooking Library for Windows.
 - [Dear Imgui:](licenses/ImGuiLicense.txt) Bloat-free Graphical User interface for C++ with minimal dependencies.
 - [UniversalHookX (modified):](licenses/UniversalHookXLicense.txt): Universal graphical hook for Windows apps.
+- [libinfinite (structs)](licenses/LibInfiniteLicense.txt): A library for working with Halo Infinites files.

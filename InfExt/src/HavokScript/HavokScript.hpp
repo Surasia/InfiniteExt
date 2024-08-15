@@ -24,24 +24,18 @@ private:
 	using GetGlobal = int(__fastcall*)(uintptr_t state, char* string);
 	static inline GetGlobal GetGlobalH = nullptr;
 	static inline GetGlobal GetGlobalA = nullptr;
-
 	using PCall = uint64_t(__fastcall*)(uintptr_t state, int function, uint32_t i, int u);
 	static inline PCall PCallH = nullptr;
 	static inline PCall PCallA = nullptr;
-
-	using LoadBuffer = uint64_t(__fastcall*)(uintptr_t state, uintptr_t settings, const char* buffer, __int64 length, const char* unknown1);
+	using LoadBuffer = uint64_t(__fastcall*)(uintptr_t state, const struct HksCompilerSettings*, const char* buffer, __int64 length, const char* unknown1);
 	static inline LoadBuffer LoadBufferH = nullptr;
 	static inline LoadBuffer LoadBufferA = nullptr;
-
 	/* Private Functions */
 	static int GetGlobalHook(uintptr_t state, char* string);
 	static inline uint64_t PCallHook(uintptr_t state, int function, uint32_t i, int u);
-	static inline uint64_t LoadBufferHook(uintptr_t state, uintptr_t settings, const char* buffer, __int64 length, const char* unknown1);
-
+	static inline uint64_t LoadBufferHook(uintptr_t state, const struct HksCompilerSettings*, const char* buffer, __int64 length, const char* unknown1);
 	/* Private Variables */
 	static inline uintptr_t LuaState = 0;
-	static inline uintptr_t compilerSettings = 0;
-
 };
 
 #endif

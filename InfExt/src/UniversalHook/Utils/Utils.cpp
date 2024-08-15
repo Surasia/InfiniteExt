@@ -2,7 +2,8 @@
 
 EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
-static BOOL CALLBACK EnumWindowsCallback(HWND handle, LPARAM lParam) {
+static BOOL CALLBACK EnumWindowsCallback(HWND handle, LPARAM lParam) 
+{
 	const auto isMainWindow = [handle]() {
 		return GetWindow(handle, GW_OWNER) == nullptr && IsWindowVisible(handle);
 		};
@@ -18,14 +19,16 @@ static BOOL CALLBACK EnumWindowsCallback(HWND handle, LPARAM lParam) {
 	return FALSE;
 }
 
-static DWORD WINAPI _UnloadDLL(LPVOID lpParam) {
+static DWORD WINAPI _UnloadDLL(LPVOID lpParam) 
+{
 	FreeLibraryAndExitThread(Utils::GetCurrentImageBase(), 0);
 	return 0;
 }
 
 namespace Utils {
 
-	HWND GetProcessWindow() {
+	HWND GetProcessWindow() 
+	{
 		HWND hwnd = nullptr;
 		EnumWindows(::EnumWindowsCallback, reinterpret_cast<LPARAM>(&hwnd));
 
@@ -39,16 +42,19 @@ namespace Utils {
 		return hwnd;
 	}
 
-	void UnloadDLL() {
+	void UnloadDLL() 
+	{
 		HANDLE hThread = CreateThread(NULL, 0, _UnloadDLL, NULL, 0, NULL);
 		if (hThread != NULL) CloseHandle(hThread);
 	}
 
-	HMODULE GetCurrentImageBase() {
+	HMODULE GetCurrentImageBase() 
+	{
 		return (HINSTANCE)(&__ImageBase);
 	}
 
-	int GetCorrectDXGIFormat(int eCurrentFormat) {
+	int GetCorrectDXGIFormat(int eCurrentFormat) 
+	{
 		switch (eCurrentFormat) {
 		case DXGI_FORMAT_R8G8B8A8_UNORM_SRGB: return DXGI_FORMAT_R8G8B8A8_UNORM;
 		}

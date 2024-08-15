@@ -19,7 +19,8 @@ public:
 	static Logger& GetInstance(bool useFile = false);
 	/* Public Templates */
 	template<typename... Args>
-	void Log(Level logLevel, const std::string& formatString, Args&&... args) {
+	void Log(Level logLevel, const std::string& formatString, Args&&... args) 
+	{
 		std::lock_guard<std::mutex> lock(mtx);
 		std::string timestamp = GetTimestamp();
 		std::string formattedMessage = std::vformat(formatString, std::make_format_args(args...));
@@ -44,7 +45,7 @@ private:
 	std::string GetTimestamp();
 	void OpenLogFile();
 	/* Private Variables */
-	bool useFile;
+	bool useFile = false;
 	std::ofstream logFile;
 	static std::mutex mtx;
 };

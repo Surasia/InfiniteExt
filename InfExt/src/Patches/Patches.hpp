@@ -2,16 +2,16 @@
 #define FORGE_HPP
 #include <windows.h>
 
-struct Forge {
+struct Patches {
 public:
 	/* Operators */
-	Forge() = default;
-	~Forge() = default;
+	Patches() = default;
+	~Patches() = default;
 	/* Public Functions */
 	static void ToggleForgeHiddenCategories();
-private:
-	/* Public Variables */
-	inline static bool isEnabled = false;
+	static void ToggleHUD();
+	static void ToggleWatermark();
+	static void ToggleKillVolumes();
 };
 
 #endif

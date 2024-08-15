@@ -6,7 +6,8 @@
 static HWND g_hWindow = NULL;
 static std::mutex g_mReinitHooksGuard;
 
-static DWORD WINAPI ReinitializeGraphicalHooks(LPVOID lpParam) {
+static DWORD WINAPI ReinitializeGraphicalHooks(LPVOID lpParam) 
+{
 	std::lock_guard<std::mutex> guard{ g_mReinitHooksGuard };
 
 	HWND hNewWindow = Utils::GetProcessWindow();
@@ -26,7 +27,8 @@ static DWORD WINAPI ReinitializeGraphicalHooks(LPVOID lpParam) {
 }
 
 static WNDPROC oWndProc;
-static LRESULT WINAPI WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+static LRESULT WINAPI WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
+{
 	if (uMsg == WM_KEYDOWN) {
 		if (wParam == VK_INSERT) {
 			Menu::shouldShowMenu = !Menu::shouldShowMenu;
@@ -59,13 +61,15 @@ static LRESULT WINAPI WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM 
 }
 
 namespace Hooks {
-	void Init() {
+	void Init() 
+	{
 		g_hWindow = Utils::GetProcessWindow();
 		DX12::Hook(g_hWindow);
 		oWndProc = reinterpret_cast<WNDPROC>(SetWindowLongPtr(g_hWindow, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(WndProc)));
 	}
 
-	void Free() {
+	void Free() 
+	{
 		if (oWndProc) {
 			SetWindowLongPtr(g_hWindow, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(oWndProc));
 		}
@@ -75,4 +79,4 @@ namespace Hooks {
 
 		DX12::Unhook();
 	}
-} // namespace Hooks
+}

@@ -2,24 +2,28 @@
 
 std::mutex Logger::mtx;
 
-Logger& Logger::GetInstance(bool useFile) {
+Logger& Logger::GetInstance(bool useFile) 
+{
 	static Logger instance(useFile);
 	return instance;
 }
 
-Logger::Logger(bool useFile) : useFile(useFile) {
+Logger::Logger(bool useFile) : useFile(useFile) 
+{
 	if (useFile) {
 		OpenLogFile();
 	}
 }
 
-Logger::~Logger() {
+Logger::~Logger() 
+{
 	if (logFile.is_open()) {
 		logFile.close();
 	}
 }
 
-std::string Logger::LevelToString(Level logLevel) {
+std::string Logger::LevelToString(Level logLevel) 
+{
 	switch (logLevel) {
 	case DEBUG: return "DEBUG";
 	case INFO: return "INFO";
@@ -30,7 +34,8 @@ std::string Logger::LevelToString(Level logLevel) {
 	}
 }
 
-std::string Logger::GetTimestamp() {
+std::string Logger::GetTimestamp() 
+{
 	time_t now = time(0);
 	struct tm timeinfo;
 	char buffer[20];
@@ -39,9 +44,9 @@ std::string Logger::GetTimestamp() {
 	return std::string(buffer);
 }
 
-void Logger::OpenLogFile() {
-	std::string timestamp = GetTimestamp();
-	std::string filename = "InfExt_" + timestamp + ".log";
+void Logger::OpenLogFile() 
+{
+	std::string filename = "./InfExt.log";
 	logFile.open(filename, std::ios::app);
 	if (!logFile.is_open()) {
 		useFile = false;

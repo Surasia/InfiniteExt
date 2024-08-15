@@ -22,7 +22,8 @@ static void CleanupDeviceD3D12();
 static void CleanupRenderTarget();
 static void RenderImGui_DX12(IDXGISwapChain3* pSwapChain);
 
-static bool CreateDeviceD3D12(HWND hWnd) {
+static bool CreateDeviceD3D12(HWND hWnd) 
+{
 	// Setup swap chain
 	DXGI_SWAP_CHAIN_DESC1 sd = { };
 	sd.BufferCount = NUM_BACK_BUFFERS;
@@ -53,7 +54,8 @@ static bool CreateDeviceD3D12(HWND hWnd) {
 	return true;
 }
 
-static void CreateRenderTarget(IDXGISwapChain* pSwapChain) {
+static void CreateRenderTarget(IDXGISwapChain* pSwapChain) 
+{
 	for (UINT i = 0; i < NUM_BACK_BUFFERS; ++i) {
 		ID3D12Resource* pBackBuffer = NULL;
 		pSwapChain->GetBuffer(i, IID_PPV_ARGS(&pBackBuffer));
@@ -174,7 +176,8 @@ static HRESULT WINAPI hkCreateSwapChainForComposition(IDXGIFactory* pFactory,
 }
 
 namespace DX12 {
-	void Hook(HWND hwnd) {
+	void Hook(HWND hwnd) 
+	{
 		Logger& logger = Logger::GetInstance();
 		if (!CreateDeviceD3D12(GetConsoleWindow())) {
 			logger.Log(Logger::_ERROR, "CreateDeviceD3D12() failed");
@@ -236,7 +239,8 @@ namespace DX12 {
 		}
 	}
 
-	void Unhook() {
+	void Unhook() 
+	{
 		if (ImGui::GetCurrentContext()) {
 			if (ImGui::GetIO().BackendRendererUserData)
 				ImGui_ImplDX12_Shutdown();
@@ -251,7 +255,8 @@ namespace DX12 {
 	}
 }
 
-static void CleanupRenderTarget() {
+static void CleanupRenderTarget() 
+{
 	for (UINT i = 0; i < NUM_BACK_BUFFERS; ++i)
 		if (g_mainRenderTargetResource[i]) {
 			g_mainRenderTargetResource[i]->Release();
@@ -259,7 +264,8 @@ static void CleanupRenderTarget() {
 		}
 }
 
-static void CleanupDeviceD3D12() {
+static void CleanupDeviceD3D12() 
+{
 	CleanupRenderTarget();
 
 	if (g_pSwapChain) {
@@ -293,7 +299,8 @@ static void CleanupDeviceD3D12() {
 	}
 }
 
-static void RenderImGui_DX12(IDXGISwapChain3* pSwapChain) {
+static void RenderImGui_DX12(IDXGISwapChain3* pSwapChain) 
+{
 	if (!ImGui::GetIO().BackendRendererUserData) {
 		if (SUCCEEDED(pSwapChain->GetDevice(IID_PPV_ARGS(&g_pd3dDevice)))) {
 			{

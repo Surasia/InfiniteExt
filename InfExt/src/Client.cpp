@@ -1,14 +1,17 @@
 #include "Client.hpp"
+#include "Globals.hpp"
 #include "Exports.hpp"
 #include "./HavokScript/HavokScript.hpp"
 #include "./Misc/ChromaSDK.hpp"
 #include "./UniversalHook/utils/utils.hpp"
 #include "./UniversalHook/hooks/hooks.hpp"
 #include "./Logger/Logger.hpp"
+#include "./Patches/Patches.hpp"
+#include "./TagLoader/TagLoader.hpp"
 
-Logger& logger = Logger::GetInstance(false);
 
-DWORD WINAPI CreateConsole() {
+static DWORD WINAPI CreateConsole()
+{
 	FILE* dummy = nullptr;
 	AllocConsole();
 	AttachConsole(GetCurrentProcessId());
@@ -17,15 +20,18 @@ DWORD WINAPI CreateConsole() {
 		if (freopen_s(&dummy, "CONIN$", "r", stdin) != 0 ||
 			freopen_s(&dummy, "CONOUT$", "w", stdout) != 0 ||
 			freopen_s(&dummy, "CONOUT$", "w", stderr) != 0) {
-			std::cerr << "Failed to redirect console streams !" << std::endl;
+			std::cerr << "Failed to redirect console streams !\n";
 			return 1;
 		}
 	}
+	Logger& logger = Logger::GetInstance(false);
 	logger.Log(Logger::INFO, "Console Initialized!");
 	return 0;
 }
 
-DWORD WINAPI DestroyConsole() {
+static DWORD WINAPI DestroyConsole()
+{
+	Logger& logger = Logger::GetInstance(false);
 	logger.Log(Logger::INFO, "Destroying Console...");
 	if (FreeConsole() == 0) {
 		logger.Log(Logger::_ERROR, "Console failed to close!");
@@ -44,7 +50,9 @@ DWORD WINAPI DestroyConsole() {
 	return 0;
 }
 
-DWORD WINAPI DestroyHook() {
+static DWORD WINAPI DestroyHook()
+{
+	Logger& logger = Logger::GetInstance(false);
 	stopThread = true;
 	cv.notify_all();
 
@@ -61,9 +69,9 @@ DWORD WINAPI DestroyHook() {
 	return 0;
 }
 
-
-static DWORD SetupHook() {
-	uintptr_t ModuleBase = 0;
+static DWORD SetupHook()
+{
+	Logger& logger = Logger::GetInstance(false);
 
 	LPCSTR moduleName = "HaloInfinite.exe";
 	ModuleBase = reinterpret_cast<uintptr_t>(GetModuleHandleA(moduleName));
@@ -77,7 +85,9 @@ static DWORD SetupHook() {
 	return 0;
 }
 
-DWORD WINAPI MainThread(LPVOID lpParameter) {
+static DWORD WINAPI MainThread(LPVOID lpParameter)
+{
+	Logger& logger = Logger::GetInstance(false);
 	CreateConsole();
 	SetupHook();
 	Hooks::Init();
@@ -87,7 +97,8 @@ DWORD WINAPI MainThread(LPVOID lpParameter) {
 
 DWORD WINAPI OnProcessDetach(LPVOID lpParam);
 
-BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
+BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
+{
 	if (fdwReason == DLL_PROCESS_ATTACH) {
 		DisableThreadLibraryCalls(hinstDLL);
 		hMutex = CreateMutexA(NULL, TRUE, "UniqueDLLInstanceMutex");
@@ -111,7 +122,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
 	return TRUE;
 }
 
-DWORD WINAPI OnProcessDetach(LPVOID lpParam) {
+DWORD WINAPI OnProcessDetach(LPVOID lpParam)
+{
 	DestroyHook();
 	DestroyConsole();
 	Hooks::Free();

@@ -1,4 +1,3 @@
-#include "AoBScanner.hpp"
 #include "TagLoader.hpp"
 #include "../Logger/Logger.hpp"
 

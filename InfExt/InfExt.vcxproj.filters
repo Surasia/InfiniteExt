@@ -47,9 +47,6 @@
     <ClInclude Include="src\Patches\Patches.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TagLoader\AoBScanner.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\TagLoader\TagLoader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -104,9 +101,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Patches\Patches.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TagLoader\AoBScanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\TagLoader\TagLoader.cpp">

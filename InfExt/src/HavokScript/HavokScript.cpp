@@ -14,7 +14,7 @@ uint64_t Hks::PCallHook(uintptr_t state, int function, uint32_t i, int u)
 	return result;
 }
 
-uint64_t Hks::LoadBufferHook(uintptr_t state, const struct HksCompilerSettings* settings, const char* buffer, __int64 length, const char* unknown1)
+uint64_t Hks::LoadBufferHook(uintptr_t state, const struct Hks::CompilerSettings* settings, const char* buffer, __int64 length, const char* unknown1)
 {
 	__int64 result = LoadBufferA(state, settings, buffer, length, unknown1);
 	return result;
@@ -25,7 +25,7 @@ uint64_t Hks::DoString(const char* string)
 {
 	size_t stringLength = std::strlen(string);
 	
-	if (LoadBufferA(LuaState, (const struct HksCompilerSettings*)(*((uintptr_t*)LuaState + 2) + 1368), string, stringLength, string)) {
+	if (LoadBufferA(LuaState, (const struct CompilerSettings*)(*((uintptr_t*)LuaState + 2) + 1368), string, stringLength, string)) {
 		return 1;
 	}
 

@@ -4,10 +4,10 @@
 #include <Minhook.h>
 #include <consoleapi.h>
 #include <cstring>
+#include <mutex>
 #include <psapi.h>
 #include <tchar.h>
 #include <windows.h>
-#include <mutex>
 
 std::mutex consoleMutex;
 std::condition_variable cv;

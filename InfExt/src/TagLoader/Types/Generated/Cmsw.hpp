@@ -1,21 +1,24 @@
 #ifndef CMSW_HPP
 #define CMSW_HPP
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 #include "../infiniteStructs.hpp"
-#include <stdint.h>
+#include <cstdint>
 
-struct cmsw {
-    struct AnyTag {
-        uint64_t vtable_space;
-        struct internal_struct {
-            uint32_t global_tag_ID;
-            uint32_t local_tag_handle;
+struct CoatingSwatchPODTag
+{
+    struct AnyTag
+    {
+        uint64_t vtableSpace;
+        struct internalStruct
+        {
+            uint32_t globalTagID;
+            uint32_t localTagHandle;
         };
-        struct internal_struct internal_struct_ent;
+        struct internalStruct internalStructEnt;
     };
-    struct AnyTag AnyTag_ent;
-    struct tagReference Parent;
+    struct AnyTag anyTagEnt;
+    struct tagReference parent;
     struct vector2D colorAndRoughnessTextureTransform;
     struct vector2D normalTextureTransform;
     struct tagReference colorGradientMap;
@@ -40,5 +43,4 @@ struct cmsw {
 };
 
 #pragma pack(pop)
-
 #endif

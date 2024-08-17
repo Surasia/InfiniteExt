@@ -1,15 +1,16 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
+#include "../../TagLoader/TagLoader.hpp"
+#include "../../TagLoader/Types/Generated/Cmsw.hpp"
 #include <Windows.h>
-#include <string>
 #include <imgui.h>
 #include <imgui_impl_win32.h>
 #include <map>
-#include "../../TagLoader/TagLoader.hpp"
-#include "../../TagLoader/Types/Generated/Cmsw.hpp"
+#include <string>
 
-class Menu {
+class Menu
+{
 public:
     /* Public Functions */
     static void InitializeContext(HWND hwnd);

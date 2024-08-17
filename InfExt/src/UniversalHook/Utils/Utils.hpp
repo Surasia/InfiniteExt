@@ -2,16 +2,17 @@
 #define UTILS_CPP
 
 #include <Windows.h>
-#include <thread>
 #include <dxgi.h>
+#include <thread>
 
-namespace Utils {
-	HWND GetProcessWindow();
-	void UnloadDLL();
+namespace Utils
+{
+HWND GetProcessWindow();
+void UnloadDLL();
 
-	HMODULE GetCurrentImageBase();
+HMODULE GetCurrentImageBase();
 
-	int GetCorrectDXGIFormat(int eCurrentFormat);
-}
+int GetCorrectDXGIFormat(int eCurrentFormat);
+} // namespace Utils
 
 #endif

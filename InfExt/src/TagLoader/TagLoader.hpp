@@ -5,16 +5,18 @@
 #include <shared_mutex>
 
 /* Layout of TagStruct in Memory */
-struct TagStruct {
+struct TagStruct
+{
     uint32_t Datum = 0;
     uint32_t ObjectId = 0;
-    std::string TagGroup = "";
+    std::string TagGroup;
     uint64_t TagData = 0;
-    std::string TagTypeDesc = "";
+    std::string TagTypeDesc;
 };
 
 
-class TagLoader {
+class TagLoader
+{
 public:
     /* Public Functions */
     static void PrintTagInfo();

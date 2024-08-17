@@ -2,53 +2,64 @@
 
 std::mutex Logger::mtx;
 
-Logger& Logger::GetInstance(bool useFile) 
+Logger &Logger::GetInstance(bool useFile)
 {
-	static Logger instance(useFile);
-	return instance;
+    static Logger instance(useFile);
+    return instance;
 }
 
-Logger::Logger(bool useFile) : useFile(useFile) 
+Logger::Logger(bool useFile) : useFile(useFile)
 {
-	if (useFile) {
-		OpenLogFile();
-	}
+    if (useFile)
+    {
+        OpenLogFile();
+    }
 }
 
-Logger::~Logger() 
+Logger::~Logger()
 {
-	if (logFile.is_open()) {
-		logFile.close();
-	}
+    if (logFile.is_open())
+    {
+        logFile.close();
+    }
 }
 
-std::string Logger::LevelToString(Level logLevel) 
+std::string Logger::LevelToString(Level logLevel)
 {
-	switch (logLevel) {
-	case DEBUG: return "DEBUG";
-	case INFO: return "INFO";
-	case WARNING: return "WARNING";
-	case CRITICAL: return "CRITICAL";
-	case _ERROR: return "ERROR";
-	default: return "UNKNOWN";
-	}
+    switch (logLevel)
+    {
+    case DEBUG:
+        return "DEBUG";
+    case INFO:
+        return "INFO";
+    case WARNING:
+        return "WARNING";
+    case CRITICAL:
+        return "CRITICAL";
+    case _ERROR:
+        return "ERROR";
+    default:
+        return "UNKNOWN";
+    }
 }
 
-std::string Logger::GetTimestamp() 
+std::string Logger::GetTimestamp()
 {
-	time_t now = time(0);
-	struct tm timeinfo;
-	char buffer[20];
-	localtime_s(&timeinfo, &now);
-	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &timeinfo);
-	return std::string(buffer);
+    time_t now = time(nullptr);
+    struct tm timeinfo{};
+    std::array<char, 20> timestamp{};
+    localtime_s(&timeinfo, &now);
+    strftime(timestamp.data(), sizeof(timestamp), "%Y-%m-%d %H:%M:%S", &timeinfo);
+    std::string timestampString = std::string(timestamp.begin(), timestamp.end() - 1);
+    return timestampString;
 }
 
-void Logger::OpenLogFile() 
+void Logger::OpenLogFile()
 {
-	std::string filename = "./InfExt.log";
-	logFile.open(filename, std::ios::app);
-	if (!logFile.is_open()) {
-		useFile = false;
-	}
+    std::string filename = "./InfExt.log";
+    logFile.open(filename, std::ios::app);
+    if (!logFile.is_open())
+    {
+        useFile = false;
+    }
 }

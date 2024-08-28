@@ -17,12 +17,12 @@ public:
 
 private:
     /* Function Type Definitions */
-    using NullChromaSDK = __int64(__fastcall *)(char *Format);
+    using NullChromaSDK = int64_t(__fastcall *)(char *Format);
     static inline NullChromaSDK NullChromaSDKH = nullptr;
     static inline NullChromaSDK NullChromaSDKA = nullptr;
 
     /* Private Functions */
-    static __int64 NullChromaSDKHook(char *Format);
+    static int64_t NullChromaSDKHook(char *Format);
 };
 
 #endif

@@ -2,7 +2,7 @@
 #include "../Memory.hpp"
 
 /* Nulls out the print message for "ChromaSDK failed to load!" which can cause issues with stdin. */
-__int64 ChromaSDK::NullChromaSDKHook(char *Format)
+int64_t ChromaSDK::NullChromaSDKHook(char *Format)
 {
     return 0;
 }

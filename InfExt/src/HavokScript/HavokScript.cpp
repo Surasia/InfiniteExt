@@ -39,10 +39,13 @@ uint64_t Hks::DoString(const char *string)
 
 void Hks::HookHavokScript(uintptr_t ModuleBase)
 {
-    const uintptr_t GetGlobalOffset = 0x80CB4C;
+    // Search for "_OBJECT_META", follow the ref, and find this function directly below.
+    const uintptr_t GetGlobalOffset = 0x786B7C;
     GetGlobalH = hook_function<GetGlobal>(ModuleBase, GetGlobalOffset, &GetGlobalHook, &GetGlobalA);
-    const uintptr_t PCallOffset = 0x764304;
+    // Search for "GetDescription",and you'll find it below in the second if block.
+    const uintptr_t PCallOffset = 0x6567B8;
     PCallH = hook_function<PCall>(ModuleBase, PCallOffset, &PCallHook, &PCallA);
-    const uintptr_t LoadBufferOffset = 0xA484C0;
+    // Search for "loadstring", follow the second ref, and check the function inside the if block.
+    const uintptr_t LoadBufferOffset = 0xA2BDD0;
     LoadBufferH = hook_function<LoadBuffer>(ModuleBase, LoadBufferOffset, &LoadBufferHook, &LoadBufferA);
 }

@@ -6,7 +6,7 @@
 void Patches::ToggleForgeHiddenCategories()
 {
     Logger &logger = Logger::GetInstance(false);
-    constexpr uintptr_t offset = 0x50E1840;
+    constexpr uintptr_t offset = 0x50E4940;
     bool *boolPtr = reinterpret_cast<bool *>(GetModuleBase() + offset);
     logger.Log(Logger::INFO, "Hide Forge Category set to: {}", *boolPtr ? "true" : "false");
     *boolPtr = !(*boolPtr);
@@ -16,7 +16,7 @@ void Patches::ToggleForgeHiddenCategories()
 void Patches::ToggleHUD()
 {
     Logger &logger = Logger::GetInstance(false);
-    constexpr uintptr_t offset = 0x484B060;
+    constexpr uintptr_t offset = 0x484E160;
     bool *boolPtr = reinterpret_cast<bool *>(GetModuleBase() + offset);
     logger.Log(Logger::INFO, "HUD set to: {}", *boolPtr ? "true" : "false");
     *boolPtr = !(*boolPtr);
@@ -26,7 +26,7 @@ void Patches::ToggleHUD()
 void Patches::ToggleWatermark()
 {
     Logger &logger = Logger::GetInstance(false);
-    constexpr uintptr_t offset = 0x48BB520;
+    constexpr uintptr_t offset = 0x48BE620;
     bool *boolPtr = reinterpret_cast<bool *>(GetModuleBase() + offset);
     logger.Log(Logger::INFO, "Watermark set to: {}", *boolPtr ? "true" : "false");
     *boolPtr = !(*boolPtr);
@@ -36,7 +36,7 @@ void Patches::ToggleWatermark()
 void Patches::ToggleKillVolumes()
 {
     Logger &logger = Logger::GetInstance(false);
-    constexpr uintptr_t offset = 0x4EF3434;
+    constexpr uintptr_t offset = 0x4EF6534;
     bool *boolPtr = reinterpret_cast<bool *>(GetModuleBase() + offset);
     logger.Log(Logger::INFO, "Kill Volume set to: {}", *boolPtr ? "true" : "false");
     *boolPtr = !(*boolPtr);

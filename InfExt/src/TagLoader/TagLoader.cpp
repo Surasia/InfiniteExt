@@ -24,7 +24,7 @@ void TagLoader::PrintTagInfo()
 
 void TagLoader::TagAddressPrinter(uintptr_t ModuleBase)
 {
-    constexpr uintptr_t tagAddressOffset = 0x48BE488;
+    constexpr uintptr_t tagAddressOffset = 0x48C1598;
     while (baseAddress.load() == 0)
     {
         std::memcpy(&baseAddress, reinterpret_cast<void *>(ModuleBase + tagAddressOffset), sizeof(baseAddress));
@@ -87,7 +87,7 @@ void TagLoader::ReadTags(uintptr_t ModuleBase)
     Logger &logger = Logger::GetInstance(false);
     // basically in IDA search for "tag instances" and then you'll see a function called with "tag instances" as a parameter for it.
     // the return value (v0) is the address you want.
-    constexpr uintptr_t tagInstanceOffset = 0x48BE488;
+    constexpr uintptr_t tagInstanceOffset = 0x48C1598;
     logger.Log(Logger::INFO, "Tag Instances Address: {:x}", ModuleBase + tagInstanceOffset);
     TagAddressPrinter(ModuleBase);
 }

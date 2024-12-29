@@ -1,7 +1,6 @@
 #include "Client.hpp"
 #include "./HavokScript/HavokScript.hpp"
 #include "./Logger/Logger.hpp"
-#include "./Misc/ChromaSDK.hpp"
 #include "./UniversalHook/hooks/hooks.hpp"
 #include "Exports.hpp"
 #include "Globals.hpp"
@@ -80,7 +79,6 @@ static DWORD SetupHook()
         return 1;
     }
 
-    ChromaSDK::HookChroma(ModuleBase);
     Hks::HookHavokScript(ModuleBase);
     return 0;
 }
@@ -89,6 +87,7 @@ static DWORD WINAPI MainThread(LPVOID lpParameter)
 {
     Logger &logger = Logger::GetInstance(false);
     CreateConsole();
+    Sleep(10000);
     SetupHook();
     Hooks::Init();
     logger.Log(Logger::INFO, "ImGui Initialized!");

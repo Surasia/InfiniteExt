@@ -40,10 +40,14 @@ private:
     using LoadBuffer = uint64_t(__fastcall *)(uintptr_t state, const struct Hks::CompilerSettings *settings, const char *buffer, uint64_t length, const char *unknown1);
     static inline LoadBuffer LoadBufferH = nullptr;
     static inline LoadBuffer LoadBufferA = nullptr;
+    using LuaPrint = int(__fastcall *)(char *Buffer, size_t BufferCount, char *Format, va_list ArgList);
+    static inline LuaPrint LuaPrintH = nullptr;
+    static inline LuaPrint LuaPrintA = nullptr;
     /* Private Functions */
     static int GetGlobalHook(uintptr_t state, char *string);
     static uint64_t PCallHook(uintptr_t state, int function, uint32_t i, int u);
     static uint64_t LoadBufferHook(uintptr_t state, const struct Hks::CompilerSettings *settings, const char *buffer, __int64 length, const char *unknown1);
+    static int LuaPrintHook(char *Buffer, size_t BufferCount, char *Format, va_list ArgList);
     /* Private Variables */
     static inline uintptr_t LuaState = 0;
 };

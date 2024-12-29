@@ -7,5 +7,6 @@ inline static bool forgeHiddenCategory = false;
 inline static bool watermarkEnabled = false;
 inline static bool hudEnabled = false;
 inline static bool killVolumesEnabled = false;
+inline static bool printsEnabled = false;
 
 #endif

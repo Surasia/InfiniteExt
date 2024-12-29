@@ -86,7 +86,6 @@
     <ClInclude Include="src\ImGuiHook\stdafx.h" />
     <ClInclude Include="src\Logger\Logger.hpp" />
     <ClInclude Include="src\Memory.hpp" />
-    <ClInclude Include="src\Misc\ChromaSDK.hpp" />
     <ClInclude Include="src\TagLoader\TagLoader.hpp" />
     <ClInclude Include="src\TagLoader\Types\Generated\Cmsw.hpp" />
     <ClInclude Include="src\TagLoader\Types\InfiniteStructs.hpp" />
@@ -106,7 +105,6 @@
     <ClCompile Include="src\HavokScript\HavokScript.cpp" />
     <ClCompile Include="src\Logger\Logger.cpp" />
     <ClCompile Include="src\Memory.cpp" />
-    <ClCompile Include="src\Misc\ChromaSDK.cpp" />
     <ClCompile Include="src\TagLoader\TagLoader.cpp" />
     <ClCompile Include="src\UniversalHook\Hooks\DX12Hook.cpp" />
     <ClCompile Include="src\UniversalHook\Hooks\Hooks.cpp" />

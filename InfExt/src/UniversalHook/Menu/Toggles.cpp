@@ -26,5 +26,10 @@ void RenderToggles()
         Patches::ToggleKillVolumes();
     }
 
+    if (ImGui::Checkbox("Enable Prints", &printsEnabled))
+    {
+        printsEnabled = !printsEnabled;
+    }
+
     ImGui::EndChild();
 }
